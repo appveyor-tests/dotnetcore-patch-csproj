@@ -1,0 +1,7 @@
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\bin\Debug\netcoreapp1.1\dotnetcore-patch-csproj.deps.json
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\bin\Debug\netcoreapp1.1\dotnetcore-patch-csproj.dll
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\bin\Debug\netcoreapp1.1\dotnetcore-patch-csproj.pdb
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\obj\Debug\netcoreapp1.1\dotnetcore-patch-csproj.csprojResolveAssemblyReference.cache
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\obj\Debug\netcoreapp1.1\dotnetcore-patch-csproj.AssemblyInfo.cs
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\obj\Debug\netcoreapp1.1\dotnetcore-patch-csproj.dll
+c:\users\ilya\documents\visual studio 2017\Projects\dotnetcore-patch-csproj\dotnetcore-patch-csproj\obj\Debug\netcoreapp1.1\dotnetcore-patch-csproj.pdb
