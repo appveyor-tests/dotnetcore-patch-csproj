@@ -1,0 +1,17 @@
+version: 21.31.{build}
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+build_script:
+- ps: |
+    Write-host "Appveyor build version: $env:appveyor_build_version"
+    $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\dotnetcore-patch-csproj.csproj"
+    $xml = [xml](get-content $xmlPath)
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
+    Write-host "Version: "$propertyGroup.Version    
+    if ($propertyGroup.Version -ne $env:appveyor_build_version) {throw "Version was not patched properly"}    
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.PackageVersion}
+    Write-host "PackageVersion: "$propertyGroup.PackageVersion    
+    if ($propertyGroup.PackageVersion -ne $env:appveyor_build_version) {throw "PackageVersion was not patched properly"}
