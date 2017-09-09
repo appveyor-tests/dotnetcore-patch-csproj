@@ -4,14 +4,32 @@ dotnet_csproj:
   file: '**\*.csproj'
   version: '{version}'
   package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
 build_script:
 - ps: |
     Write-host "Appveyor build version: $env:appveyor_build_version"
     $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\dotnetcore-patch-csproj.csproj"
     $xml = [xml](get-content $xmlPath)
+    
     $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
     Write-host "Version: "$propertyGroup.Version    
     if ($propertyGroup.Version -ne $env:appveyor_build_version) {throw "Version was not patched properly"}    
+    
     $propertyGroup = $xml.Project.PropertyGroup | Where { $_.PackageVersion}
     Write-host "PackageVersion: "$propertyGroup.PackageVersion    
     if ($propertyGroup.PackageVersion -ne $env:appveyor_build_version) {throw "PackageVersion was not patched properly"}
+    
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.AssemblyVersion}
+    Write-host "AssemblyVersion: "$propertyGroup.AssemblyVersion    
+    if ($propertyGroup.AssemblyVersion -ne $env:appveyor_build_version) {throw "AssemblyVersion was not patched properly"}
+
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.FileVersion}
+    Write-host "FileVersion: "$propertyGroup.FileVersion    
+    if ($propertyGroup.FileVersion -ne $env:appveyor_build_version) {throw "FileVersion was not patched properly"}
+    
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.InformationalVersion}
+    Write-host "InformationalVersion: "$propertyGroup.InformationalVersion    
+    if ($propertyGroup.InformationalVersion -ne $env:appveyor_build_version) {throw "InformationalVersion was not patched properly"}
