@@ -14,7 +14,7 @@ build_script:
     Write-host "Appveyor build version: $env:appveyor_build_version"
     
     $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\dotnetcore-patch-csproj.csproj"
-    Write-host "Checking $($env:xmlPath)"
+    Write-host "Checking $xmlPath"
     $xml = [xml](get-content $xmlPath)
     
     $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
@@ -39,7 +39,7 @@ build_script:
     
     @("common.props", "fsharp.fsproj", "generic.xml") | ForEach-Object {      
       $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\$_"
-      Write-host "Checking $($env:xmlPath)"
+      Write-host "Checking $xmlPath"
       $xml = [xml](get-content $xmlPath)
     
       $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
