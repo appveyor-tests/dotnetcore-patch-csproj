@@ -9,9 +9,12 @@ dotnet_csproj:
   informational_version: '{version}'
 
 build_script:
-- ps: |
+- ps: |    
+    
     Write-host "Appveyor build version: $env:appveyor_build_version"
+    
     $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\dotnetcore-patch-csproj.csproj"
+    Write-host "Checking $env:xmlPath"
     $xml = [xml](get-content $xmlPath)
     
     $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
@@ -33,3 +36,15 @@ build_script:
     $propertyGroup = $xml.Project.PropertyGroup | Where { $_.InformationalVersion}
     Write-host "InformationalVersion: "$propertyGroup.InformationalVersion    
     if ($propertyGroup.InformationalVersion -ne $env:appveyor_build_version) {throw "InformationalVersion was not patched properly"}
+    
+    $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\common.props"
+    Write-host "Checking $env:xmlPath"
+    $xml = [xml](get-content $xmlPath)
+    
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
+    Write-host "Version: "$propertyGroup.Version    
+    if ($propertyGroup.Version -ne $env:appveyor_build_version) {throw "Version was not patched properly"}    
+    
+    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.PackageVersion}
+    Write-host "PackageVersion: "$propertyGroup.PackageVersion    
+    if ($propertyGroup.PackageVersion -ne $env:appveyor_build_version) {throw "PackageVersion was not patched properly"}
