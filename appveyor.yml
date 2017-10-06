@@ -1,7 +1,7 @@
 version: 21.31.{build}
 dotnet_csproj:
   patch: true
-  file: '**\*.csproj'
+  file: '**\*.csproj;**\*.props'
   version: '{version}'
   package_version: '{version}'
   assembly_version: '{version}'
