@@ -11,9 +11,12 @@
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\..\Build\CodeJam.snk</AssemblyOriginatorKeyFile>
 		<DelaySign>False</DelaySign>
-
-		<Version>2.0.0.0</Version>
-		<PackageVersion>2.0.0-beta1</PackageVersion>
+		
+		<Version>1.0.1</Version>
+		<PackageVersion>1.0.1</PackageVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
+		<FileVersion>1.0.1</FileVersion>
+		<InformationalVersion>1.0.1</InformationalVersion>
 		<PackageOutputPath>..\..\_Results</PackageOutputPath>
 
 		<Company>RSDN.ru</Company>
