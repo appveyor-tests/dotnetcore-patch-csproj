@@ -42,6 +42,8 @@ build_script:
       Write-host "Checking $xmlPath"
       $xml = [xml](get-content $xmlPath)
     
+      type $xmlPath
+    
       $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
       Write-host "Version: "$propertyGroup.Version    
       if ($propertyGroup.Version -ne $env:appveyor_build_version) {throw "Version was not patched properly"}    
