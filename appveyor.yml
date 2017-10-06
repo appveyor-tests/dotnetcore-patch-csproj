@@ -11,38 +11,12 @@ dotnet_csproj:
 build_script:
 - ps: |    
     
-    Write-host "Appveyor build version: $env:appveyor_build_version"
+    Write-host "Appveyor build version: $env:appveyor_build_version"      
     
-    $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\dotnetcore-patch-csproj.csproj"
-    Write-host "Checking $xmlPath"
-    $xml = [xml](get-content $xmlPath)
-    
-    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
-    Write-host "Version: "$propertyGroup.Version    
-    if ($propertyGroup.Version -ne $env:appveyor_build_version) {throw "Version was not patched properly"}    
-    
-    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.PackageVersion}
-    Write-host "PackageVersion: "$propertyGroup.PackageVersion    
-    if ($propertyGroup.PackageVersion -ne $env:appveyor_build_version) {throw "PackageVersion was not patched properly"}
-    
-    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.AssemblyVersion}
-    Write-host "AssemblyVersion: "$propertyGroup.AssemblyVersion    
-    if ($propertyGroup.AssemblyVersion -ne $env:appveyor_build_version) {throw "AssemblyVersion was not patched properly"}
-
-    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.FileVersion}
-    Write-host "FileVersion: "$propertyGroup.FileVersion    
-    if ($propertyGroup.FileVersion -ne $env:appveyor_build_version) {throw "FileVersion was not patched properly"}
-    
-    $propertyGroup = $xml.Project.PropertyGroup | Where { $_.InformationalVersion}
-    Write-host "InformationalVersion: "$propertyGroup.InformationalVersion    
-    if ($propertyGroup.InformationalVersion -ne $env:appveyor_build_version) {throw "InformationalVersion was not patched properly"}
-    
-    @("common.props", "fsharp.fsproj", "generic.xml") | ForEach-Object {      
+    @("dotnetcore-patch-csproj.csproj", "common.props", "fsharp.fsproj", "generic.xml") | ForEach-Object {      
       $xmlPath = "$env:appveyor_build_folder\dotnetcore-patch-csproj\$_"
       Write-host "Checking $xmlPath"
-      $xml = [xml](get-content $xmlPath)
-    
-      type $xmlPath
+      $xml = [xml](get-content $xmlPath)    
     
       $propertyGroup = $xml.Project.PropertyGroup | Where { $_.Version}
       Write-host "Version: "$propertyGroup.Version    
@@ -51,5 +25,17 @@ build_script:
       $propertyGroup = $xml.Project.PropertyGroup | Where { $_.PackageVersion}
       Write-host "PackageVersion: "$propertyGroup.PackageVersion    
       if ($propertyGroup.PackageVersion -ne $env:appveyor_build_version) {throw "PackageVersion was not patched properly"}
+    
+      $propertyGroup = $xml.Project.PropertyGroup | Where { $_.AssemblyVersion}
+      Write-host "AssemblyVersion: "$propertyGroup.AssemblyVersion    
+      if ($propertyGroup.AssemblyVersion -ne $env:appveyor_build_version) {throw "AssemblyVersion was not patched properly"}
+
+      $propertyGroup = $xml.Project.PropertyGroup | Where { $_.FileVersion}
+      Write-host "FileVersion: "$propertyGroup.FileVersion    
+      if ($propertyGroup.FileVersion -ne $env:appveyor_build_version) {throw "FileVersion was not patched properly"}
+    
+      $propertyGroup = $xml.Project.PropertyGroup | Where { $_.InformationalVersion}
+      Write-host "InformationalVersion: "$propertyGroup.InformationalVersion    
+      if ($propertyGroup.InformationalVersion -ne $env:appveyor_build_version) {throw "InformationalVersion was not patched properly"}
     }  
     
