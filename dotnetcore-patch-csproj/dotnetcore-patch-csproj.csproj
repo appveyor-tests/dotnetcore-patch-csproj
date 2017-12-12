@@ -6,8 +6,7 @@
     <PackageVersion>1.0.1</PackageVersion>
     <AssemblyVersion>1.0.1</AssemblyVersion>
     <FileVersion>1.0.1</FileVersion>
-    <InformationalVersion>1.0.1</InformationalVersion> 
-    <Product>32.0.23</Product>    
+    <InformationalVersion>1.0.1</InformationalVersion>  
   </PropertyGroup>
 
 </Project>
